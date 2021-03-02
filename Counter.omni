@@ -1,0 +1,5 @@
+struct Counter:
+    limit; val
+
+def advance(counter, val):
+    counter.val = (counter.val + val) % counter.limit

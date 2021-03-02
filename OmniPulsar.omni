@@ -1,0 +1,14 @@
+use Counter
+
+ins 3:
+    phasor
+    period
+    formant
+
+init:
+    counter = Counter(1) 
+
+sample:
+    counter.advance(1 / period)
+    s = clip(counter.val * formant, 0, 1)
+    out1 = phasor * ((1 - cos(s * twopi)) * 0.5)
