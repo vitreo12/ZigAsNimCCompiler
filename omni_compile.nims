@@ -1,4 +1,4 @@
 #!/usr/bin/env nim
 import os
-putEnv("CC", "~/OmniTests/zigcc".expandTilde())
+putEnv("CC", (currentSourcePath.parentDir() & "/zigcc"))
 exec "time omni OmniPulsar.omni -c:env --passNim:\"--env.options.speed='-O3 -fno-ident'\""
