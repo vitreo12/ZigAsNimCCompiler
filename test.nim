@@ -1,1 +1,1 @@
-echo "helelo from zig"
+echo "hello from zig"
