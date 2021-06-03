@@ -31,7 +31,13 @@
 
 //Needed for .dll export
 #ifdef _WIN32
-    #define OMNI_DLL_EXPORT __declspec(dllexport)
+    //MSVC
+    #ifdef _MSC_VER
+        #define OMNI_DLL_EXPORT __declspec(dllexport)
+    //MinGW
+    #else
+        #define OMNI_DLL_EXPORT __attribute__((visibility("default")))
+    #endif
 #else
     #define OMNI_DLL_EXPORT __attribute__ ((visibility("default")))
 #endif
@@ -46,7 +52,7 @@ extern "C" {
     
     //Alloc
     typedef void* omni_alloc_func_t(size_t size);
-    typedef void  omni_free_func_t(void *in);
+    typedef void  omni_free_func_t(void* in);
     
     //Print
     typedef void  omni_print_func_t(const char* format_string, ...);
